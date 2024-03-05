@@ -1,15 +1,21 @@
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+
 namespace NewsFeed
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+            var host = CreateWebHostBuilder(args).Build();
+            host.Run();
+        }
 
-            app.MapGet("/", () => "Hello World!");
-
-            app.Run();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
         }
     }
 }
